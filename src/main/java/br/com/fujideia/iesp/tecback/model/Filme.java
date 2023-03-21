@@ -11,7 +11,8 @@ import lombok.Setter;
 public class Filme {
 
     @Id
-    private int id;
+    @GeneratedValue
+    private Integer id;
     private String titulo;
     @Column(name = "ds_sinopse", length = 500)
     private String sinopse;
