@@ -2,8 +2,8 @@ package br.com.fujideia.iesp.tecback.service;
 
 import br.com.fujideia.iesp.tecback.model.Filme;
 import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
-import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
