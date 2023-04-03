@@ -1,7 +1,7 @@
 package br.com.fujideia.iesp.tecback.service;
 
-import br.com.fujideia.iesp.tecback.model.Filme;
-import br.com.fujideia.iesp.tecback.repository.FilmeRepository;
+import br.com.fujideia.iesp.tecback.model.Serie;
+import br.com.fujideia.iesp.tecback.repository.SerieRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,40 +12,35 @@ import java.util.Objects;
 
 @Slf4j
 @Service
-public class FilmeService {
-
+public class SerieService {
     @Autowired
-    private FilmeRepository repository;
+    private SerieRepository repository;
 
-    public Filme salvar(Filme filme){
-        filme = this.repository.save(filme);
-                return filme;
+    public Serie salvar(Serie serie){
+
+        return repository.save(serie);
     }
-
-    public Filme alterar(Filme filme){
-        if(Objects.nonNull(filme.getId())){
-            filme = repository.save(filme);
+    public Serie alterar(Serie serie){
+        if(Objects.nonNull(serie.getId())){
+            serie=repository.save(serie);
         }else{
             throw new NotFoundException();
         }
-        return filme;
+        return serie;
     }
-
-    public List<Filme> listar(){
+    public List<Serie> listar(){
         return repository.findAll();
     }
-
     public Boolean excluir(Integer id){
         try{
             repository.deleteById(id);
         }catch (Exception e){
-            log.info("Erro ao realizar Exclusão : {}", e);
+            log.info("Erro ao tentar excluir: {}", e);
             return false;
         }
         return true;
     }
-
-    public Filme consultarPorId(Integer id){
+    public Serie consultarPorId(Integer id){
         return repository
                 .findById(id)
                 .orElseThrow(NotFoundException::new);
